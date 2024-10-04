@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div id="user-status">
+            {% if user.is_authenticated %}
+                <h2>Logged in as {{ user.username }}</h2>
+                <button id="logout-btn" class="btn btn-danger">Logout</button>
+            {% else %}
+                <form id="login-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <div id="error-messages" class="text-danger"></div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#login-form').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "login" %}',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            window.location.reload();
+                        } else {
+                            $('#error-messages').html(response.errors);
+                        }
+                    }
+                });
+            });
+
+            $('#logout-btn').click(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "logout" %}',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
