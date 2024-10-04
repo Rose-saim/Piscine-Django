@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Movie</title>
+</head>
+<body>
+    <h1>Update Movie</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+        <p style="color: green;">{{ success }}</p>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        <select name="title">
+            {% for movie in movies %}
+                <option value="{{ movie.title }}">{{ movie.title }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="opening_crawl" placeholder="New opening crawl" required>
+        <button type="submit">Update</button>
+    </form>
+    
+    {% if not movies %}
+        <p>No data available.</p>
+    {% endif %}
+</body>
+</html>

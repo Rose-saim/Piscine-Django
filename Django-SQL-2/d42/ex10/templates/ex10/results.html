@@ -1,0 +1,15 @@
+<!-- ex10/templates/ex10/results.html -->
+
+{% if results %}
+    <ul>
+    {% for person in results %}
+        {% for movie in person.movies.all %}
+            <li>
+                {{ movie.title }} - {{ person.name }} - {{ person.gender }} - {{ person.homeworld.name }} - {{ person.homeworld.diameter }}
+            </li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>{{ message }}</p>
+{% endif %}

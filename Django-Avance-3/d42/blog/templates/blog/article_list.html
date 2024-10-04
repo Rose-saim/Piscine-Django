@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Articles</title>
+</head>
+<body>
+    <h1>Liste des Articles</h1>
+    <table>
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Résumé</th>
+            <th>Détails</th>
+        </tr>
+        {% for article in articles %}
+        <tr>
+            <td>{{ article.title }}</td>
+            <td>{{ article.author.username }}</td>
+            <td>{{ article.synopsis }}</td>
+            <td><a href="{% url 'article_detail' article.pk %}">Voir</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'logout' %}">Déconnexion</a>
+</body>
+</html>

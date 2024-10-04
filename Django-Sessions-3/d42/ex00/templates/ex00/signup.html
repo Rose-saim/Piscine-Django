@@ -1,0 +1,18 @@
+<!-- ex00/templates/ex00/signup.html -->
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Nom d'utilisateur :</label>
+    <input type="text" name="username" required><br>
+    
+    <label for="password">Mot de passe :</label>
+    <input type="password" name="password" required><br>
+    
+    <label for="password_confirm">Confirmez le mot de passe :</label>
+    <input type="password" name="password_confirm" required><br>
+  
+    <button type="submit">S'inscrire</button>
+  </form>
+  {% for message in messages %}
+    <p>{{ message }}</p>
+  {% endfor %}
+  

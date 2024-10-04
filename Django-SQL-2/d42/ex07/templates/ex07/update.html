@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Movie</title>
+</head>
+<body>
+    <h1>Update Movie</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="movie_id">Choose a movie:</label>
+        <select name="movie_id">
+            {% for movie in movies %}
+                <option value="{{ movie.id }}">{{ movie.title }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="opening_crawl">New Opening Crawl:</label>
+        <textarea name="opening_crawl" required></textarea>
+        <br>
+        <input type="submit" value="Update">
+    </form>
+    <a href="{% url 'ex07:display' %}">Display Movies</a>
+</body>
+</html>

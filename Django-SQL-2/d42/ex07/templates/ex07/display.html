@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Movies</title>
+</head>
+<body>
+    <h1>Movies</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Opening Crawl</th>
+            <th>Episode Number</th>
+            <th>Created</th>
+            <th>Updated</th>
+        </tr>
+        {% for movie in movies %}
+        <tr>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.opening_crawl }}</td>
+            <td>{{ movie.episode_nb }}</td>
+            <td>{{ movie.created }}</td>
+            <td>{{ movie.updated }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'ex07:update' %}">Update Movies</a>
+</body>
+</html>

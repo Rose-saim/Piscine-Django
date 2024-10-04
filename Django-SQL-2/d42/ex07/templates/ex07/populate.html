@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Populate Movies</title>
+</head>
+<body>
+    <h1>Populate Movies</h1>
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'ex07:display' %}">Display Movies</a>
+    <a href="{% url 'ex07:update' %}">Update Movies</a>
+</body>
+</html>

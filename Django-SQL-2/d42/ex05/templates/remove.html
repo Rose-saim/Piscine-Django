@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Movie</title>
+</head>
+<body>
+    <h1>Remove Movie</h1>
+    
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    
+    {% if success %}
+        <p style="color: green;">{{ success }}</p>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        <select name="episode_nb">  <!-- Utilise episode_nb ici -->
+            {% if movies %}
+                {% for movie in movies %}
+                    <option value="{{ movie.episode_nb }}">{{ movie.title }}</option>  <!-- Utilise episode_nb ici -->
+                {% endfor %}
+            {% else %}
+                <option value="">No movies available</option>
+            {% endif %}
+        </select>
+        <button type="submit">Remove</button>
+    </form>
+    
+    {% if not movies %}
+        <p>No data available.</p>
+    {% endif %}
+</body>
+</html>

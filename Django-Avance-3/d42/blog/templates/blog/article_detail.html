@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ article.title }}</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p><strong>Auteur :</strong> {{ article.author.username }}</p>
+    <p><strong>Résumé :</strong> {{ article.synopsis }}</p>
+    <p><strong>Contenu :</strong></p>
+    <p>{{ article.content }}</p>
+    <a href="{% url 'article_list' %}">Retour à la liste</a>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ajouter un commentaire</button>
+    </form>    
+</body>
+</html>

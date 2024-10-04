@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Fifty Shades of Bic</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            height: 40px;
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fifty Shades of Bic</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rouge</th>
+                <th>Vert</th>
+                <th>Bleu</th>
+                <th>Noir</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in indices %}
+            <tr>
+                <td style="background-color: rgb({{ color_shades.red.i }}, 0, 0);"></td>
+                <td style="background-color: rgb(0, {{ color_shades.green.i }}, 0);"></td>
+                <td style="background-color: rgb(0, 0, {{ color_shades.blue.i }});"></td>
+                <td style="background-color: rgb(0, 0, 0);"></td>  <!-- Black remains black -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
